@@ -4,14 +4,9 @@
 
 #include "graphic.h"
 
-void draw_image (u8 * image, int x, int y, int alpha)
+void draw (GRRLIB_texImg tex, int x, int y, float alpha)
 {
-	GRRLIB_texImg tex;
-	
-	tex = GRRLIB_LoadTexture(image);
 	GRRLIB_DrawImg(x, y, tex, 0, 1.0, 1.0, alpha);
-	
-	free(&tex);
 }
 
 void _printf (int x, int y, char *str, ...)

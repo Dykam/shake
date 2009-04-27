@@ -8,5 +8,7 @@ typedef struct
 	int action;
 } movable;
 
-void draw_image (u8 * image, int x, int y, int alpha);
+#define img2tex(x) (GRRLIB_LoadTexture(x))
+
+void draw (GRRLIB_texImg tex, int x, int y, float alpha);
 void _printf (int x, int y, char *str, ...);

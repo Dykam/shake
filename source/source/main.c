@@ -10,16 +10,27 @@
 
 Mtx GXmodelView2D;
 
-		/*GRRLIB_DrawImg(40, 40, panel, 0, 1.0, 1.0, 0xFFFFFFFF);
-		sprintf(txt_buffer, "This is a menu...");
-		GRRLIB_Printf2(65, y, txt_buffer, 20, 0x00000000);
-		y += 25;
-		sprintf(txt_buffer, "Nothing yet...");
-		GRRLIB_Printf2(65, y, txt_buffer, 20, 0x00000000);*/
-
-/*
- * if(!!*(u32 *)0x80001800)
- */
+void exit_game ()
+{
+	float alpha = 255;
+	GRRLIB_texImg screen = GRRLIB_Screen2Texture();
+	
+	while (alpha > 0)
+	{
+		draw(screen, 0, 0, alpha);
+ 		GRRLIB_Render();
+		alpha--;
+	}
+	
+	GRRLIB_Exit();
+	
+	if(!!*(u32 *)0x80001800)
+	{
+		exit(0);
+	}
+	
+	SYS_ResetSystem(SYS_RETURNTOMENU, 0, 0);
+}
 
 int main(int argc, char **argv)
 {
@@ -39,7 +50,7 @@ int main(int argc, char **argv)
 	while (1)
 	{
 		WPAD_ScanPads();
-		if (WPAD_ButtonsDown(0) & WPAD_BUTTON_HOME) exit(0);
+		if (WPAD_ButtonsDown(0) & WPAD_BUTTON_HOME) exit_game();
 		
 		draw_screen();
 		
