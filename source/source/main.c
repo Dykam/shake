@@ -60,8 +60,7 @@ int main(int argc, char **argv)
 	
 	while (1)
 	{
-		WPAD_ScanPads();
-		if (WPAD_ButtonsDown(0) & WPAD_BUTTON_HOME) exit_game();
+		if (!MP3Player_IsPlaying())	MP3Player_PlayBuffer(bgm_mp3, bgm_mp3_size, NULL);
 		
 		draw_screen();
 		

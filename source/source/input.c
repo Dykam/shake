@@ -1,3 +1,4 @@
+#include <stdlib.h> 
 #include <math.h>
 #include <wiiuse/wpad.h>
 
@@ -9,7 +10,7 @@
 
 bool is_nunchuk_connected (WPADData *pad)
 {
-	 (pad->exp.type == WPAD_EXP_NUNCHUK) ? return true : return false;
+	 return (pad->exp.type == WPAD_EXP_NUNCHUK) ? true : false;
 }
 
 void wiimote_handle_game (WPADData *pad)

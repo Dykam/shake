@@ -18,8 +18,8 @@ float dx = 5.4, dy = 6.3; /* Change this to set different speeds. */
 
 int random_number (int low, int max)
 {
-	//return low + (int) ((double)max * (rand() / (RAND_MAX + (double)low)));
-	return (int) low + (rand() % max);
+	return low + (int) ((double)max * (rand() / (RAND_MAX + (double)low)));
+	//return (int) low + (rand() % max);
 }
 
 bool is_on_object(int ir_x, int ir_y, movable *obj)
