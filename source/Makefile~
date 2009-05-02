@@ -18,7 +18,7 @@ include $(DEVKITPPC)/wii_rules
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
 SOURCES		:=	source source/grrlib source/libpng/pngu
-DATA		:=	data grafix font muzik
+DATA		:=	data grafix font
 INCLUDES	:=
 
 #---------------------------------------------------------------------------------
