@@ -34,6 +34,9 @@
 GRRLIB_texImg background;
 GRRLIB_texImg cursor;
 
+#define ALPHA_NONE 0
+#define ALPHA_FULL 255
+
 #define img2tex(x) (GRRLIB_LoadTexture(x))
 
 void draw (GRRLIB_texImg tex, int x, int y, int rotation, int alpha);

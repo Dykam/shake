@@ -13,6 +13,11 @@ bool is_nunchuk_connected (WPADData *pad)
 	 return (pad->exp.type == WPAD_EXP_NUNCHUK) ? true : false;
 }
 
+bool is_pressed(WPADData *pad, int button)
+{
+	return (pad->btns_d & button) ? true : false;
+}
+
 void wiimote_handle_game (WPADData *pad)
 {
 	if (pad->btns_d & WPAD_BUTTON_HOME)

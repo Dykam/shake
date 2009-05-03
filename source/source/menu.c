@@ -7,12 +7,12 @@
 #include "input.h"
 
 WPADData 	*pad;
-lwp_t		wpad_handler_thread;	
+lwp_t		wpad_handler_thread;
 
-int current_screen = 1;
+int current_screen = 0;
 int points = 0;
 
-void* wiimote_handler()
+static void * wiimote_handler()
 {
 	while (1)
 	{
@@ -26,12 +26,22 @@ void* wiimote_handler()
 			
 			switch(current_screen)
 			{
+				case 0:
+					break;
 				case 1:
 					wiimote_handle_game(pad);
+					break;
 			}
 	}
+}
+
+void main_menu()
+{
+	GRRLIB_DrawImg(0, 0, background, 0, 1.0, 1.0, 0xFFFFFFFF);
+	_printf(30, (640 / 2) - GRRLIB_TextWidth("Shake!", 20), "Shake!");
 	
-	return NULL;
+	if (is_pressed(pad, WPAD_BUTTON_A))
+		current_screen = 1;
 }
 
 // upper left, bottom left, bottom right, upper right
@@ -44,13 +54,18 @@ void draw_screen()
 	
 	switch(current_screen)
 	{
+		case 0:
+			main_menu();
+			break;
 		case 1:
 			GRRLIB_DrawImgQuad(vc, background, 0xFFFFFFFF);
 			_printf(20, 20, "Shake 0.1 - TEST version");
 			bounce(&objects);	
-			//wiimote_handler();
-			GRRLIB_DrawImg(objects.x, objects.y, objects.image, 0, 1.0, 1.0, 0xFFFFFFFF);
+			draw(objects.image, objects.x, objects.y, 0, 255);
+			break;
 	}
+	
+	//wiimote_handler();
 }
 
 void setup()
@@ -59,6 +74,6 @@ void setup()
 	LWP_CreateThread(&wpad_handler_thread, wiimote_handler, (void *)&arg, NULL, 0, 50);
 	
 	objects = create_object(random_number(40, 400), random_number(40, 400), 2, (u8 *)ball_png);
-	background = GRRLIB_LoadTexture(background_png);
+	background = img2tex(background_png);
 	cursor = img2tex(cursor_png);
 }
