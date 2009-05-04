@@ -4,8 +4,6 @@
 #include <gccore.h>
 #include <fat.h>
 #include <wiiuse/wpad.h>
-#include <asndlib.h>
-#include <mp3player.h>
 
 #include "bgm_mp3.h"
 
@@ -52,7 +50,7 @@ int main(int argc, char **argv)
 	
 	// Initialize the mp3 player
 	ASND_Init();
-	MP3Player_Init();
+	
 
 	MP3Player_PlayBuffer(bgm_mp3, bgm_mp3_size, NULL);
 	

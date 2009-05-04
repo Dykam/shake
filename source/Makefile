@@ -17,7 +17,7 @@ include $(DEVKITPPC)/wii_rules
 #---------------------------------------------------------------------------------
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
-SOURCES		:=	source source/grrlib source/libpng/pngu
+SOURCES		:=	source source/sound_core source/grrlib source/libpng/pngu
 DATA		:=	data grafix font muzik
 INCLUDES	:=
 
@@ -33,7 +33,7 @@ LDFLAGS	=	-g $(MACHDEP) -Wl,-Map,$(notdir $@).map
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
-LIBS	:=	 -lfat -lpng -ljpeg -lz -lwiiuse -lbte -lasnd -lmad -logc -lm -lfreetype 
+LIBS	:=	 -lfat -lpng -ljpeg -lz -lwiiuse -lbte -lasnd -lmad -logc -lm -ltremor -lfreetype 
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
